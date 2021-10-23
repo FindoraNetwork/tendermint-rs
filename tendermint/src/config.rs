@@ -41,7 +41,7 @@ pub struct TendermintConfig {
     /// and verifying their commits
     pub fast_sync: bool,
 
-    /// Database backend: `leveldb | memdb | cleveldb`
+    /// Database backend: `goleveldb | memdb | cleveldb`
     pub db_backend: DbBackend,
 
     /// Database directory
@@ -145,8 +145,8 @@ impl TendermintConfig {
 #[derive(Copy, Clone, Debug, Deserialize, Eq, Hash, PartialEq, Serialize)]
 pub enum DbBackend {
     /// LevelDB backend
-    #[serde(rename = "leveldb")]
-    LevelDb,
+    #[serde(rename = "goleveldb")]
+    GoLevelDb,
 
     /// MemDB backend
     #[serde(rename = "memdb")]
@@ -520,10 +520,12 @@ pub struct TxIndexConfig {
         serialize_with = "serialize_comma_separated_list",
         deserialize_with = "deserialize_comma_separated_list"
     )]
+    #[serde(default)]
     pub index_tags: Vec<tag::Key>,
 
     /// When set to true, tells indexer to index all tags (predefined tags:
     /// `tx.hash`, `tx.height` and all tags from DeliverTx responses).
+    #[serde(default)]
     pub index_all_tags: bool,
 }
 
