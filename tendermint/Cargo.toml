@@ -33,7 +33,7 @@ rustdoc-args = ["--cfg", "docsrs"]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-anomaly = "0.2"
+anomaly = { git = "https://github.com/FindoraNetwork/anomaly.git", branch = "main" }
 async-trait = "0.1"
 bytes = "1.0"
 chrono = { version = "0.4", features = ["serde"] }
