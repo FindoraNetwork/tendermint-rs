@@ -2,7 +2,7 @@
 name = "tendermint-testgen"
 version = "0.19.0"
 authors = ["Andrey Kuprianov <andrey@informal.systems>", "Shivani Joshi <shivani@informal.systems>"]
-edition = "2018"
+edition = "2021"
 readme  = "README.md"
 license    = "Apache-2.0"
 homepage   = "https://www.tendermint.com/"

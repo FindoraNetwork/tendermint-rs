@@ -2,7 +2,7 @@
 name        = "tendermint-abci"
 version     = "0.19.0"
 authors     = ["Thane Thomson <thane@informal.systems>"]
-edition     = "2018"
+edition     = "2021"
 license     = "Apache-2.0"
 readme      = "README.md"
 keywords    = ["abci", "blockchain", "bft", "consensus", "tendermint"]
