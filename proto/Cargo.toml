@@ -2,7 +2,7 @@
 name = "tendermint-proto"
 version = "0.19.0"
 authors = ["Greg Szabo <greg@informal.systems>"]
-edition = "2018"
+edition = "2021"
 license = "Apache-2.0"
 repository = "https://github.com/informalsystems/tendermint-rs/tree/master/proto"
 readme     = "README.md"
@@ -17,8 +17,8 @@ description = """
 all-features = true
 
 [dependencies]
-prost = "0.7"
-prost-types = "0.7"
+prost = "0.11"
+prost-types = "0.11"
 bytes = "1.0"
 anomaly = { git = "https://github.com/FindoraNetwork/anomaly.git", branch = "main" }
 thiserror = "1.0"

@@ -9,7 +9,3 @@ members = [
     "testgen",
     "pbt-gen"
 ]
-
-exclude = [
-    "proto-compiler"
-]

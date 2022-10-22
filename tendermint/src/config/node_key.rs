@@ -43,7 +43,7 @@ impl NodeKey {
     /// Get the public key for this keypair
     pub fn public_key(&self) -> PublicKey {
         match &self.priv_key {
-            PrivateKey::Ed25519(keypair) => keypair.public.into(),
+            PrivateKey::Ed25519(keypair) => keypair.public_key().into(),
         }
     }
 

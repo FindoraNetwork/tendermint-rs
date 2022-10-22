@@ -1,6 +1,6 @@
 //! Cryptographic (a.k.a. digital) signatures
 
-pub use ed25519::{Signature as Ed25519Signature, SIGNATURE_LENGTH as ED25519_SIGNATURE_SIZE};
+pub use ed25519::Signature as Ed25519Signature;
 pub use signature::{Signer, Verifier};
 
 #[cfg(feature = "secp256k1")]
@@ -30,12 +30,12 @@ impl TryFrom<Vec<u8>> for Signature {
         if value.is_empty() {
             return Ok(Self::default());
         }
-        if value.len() != ED25519_SIGNATURE_SIZE {
+        if value.len() != Ed25519Signature::BYTE_SIZE {
             return Err(Kind::InvalidSignatureIdLength.into());
         }
-        let mut slice: [u8; ED25519_SIGNATURE_SIZE] = [0; ED25519_SIGNATURE_SIZE];
+        let mut slice: [u8; Ed25519Signature::BYTE_SIZE] = [0; Ed25519Signature::BYTE_SIZE];
         slice.copy_from_slice(&value[..]);
-        Ok(Signature::Ed25519(Ed25519Signature::new(slice)))
+        Ok(Signature::Ed25519(Ed25519Signature::from_bytes(&slice)?))
     }
 }
 

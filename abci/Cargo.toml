@@ -2,7 +2,7 @@
 name        = "tendermint-abci"
 version     = "0.19.0"
 authors     = ["Thane Thomson <thane@informal.systems>"]
-edition     = "2018"
+edition     = "2021"
 license     = "Apache-2.0"
 readme      = "README.md"
 keywords    = ["abci", "blockchain", "bft", "consensus", "tendermint"]
@@ -28,7 +28,7 @@ binary = [ "structopt", "tracing-subscriber" ]
 [dependencies]
 bytes = "1.0"
 eyre = "0.6"
-prost = "0.7"
+prost = "0.11"
 tendermint-proto = { version = "0.19.0", path = "../proto" }
 thiserror = "1.0"
 tracing = "0.1"

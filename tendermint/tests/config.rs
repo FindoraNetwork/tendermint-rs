@@ -26,7 +26,7 @@ mod files {
         );
         assert_eq!(config.moniker.as_ref(), "technodrome");
         assert!(config.fast_sync);
-        assert_eq!(config.db_backend, DbBackend::LevelDb);
+        assert_eq!(config.db_backend, DbBackend::GoLevelDb);
         assert_eq!(config.db_dir, PathBuf::from("data"));
         assert_eq!(config.log_level.get("main"), Some("info"));
         assert_eq!(config.log_level.get("state"), Some("info"));

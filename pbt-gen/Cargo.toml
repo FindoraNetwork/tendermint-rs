@@ -2,7 +2,7 @@
 name = "tendermint-pbt-gen"
 version = "0.19.0"
 authors = ["Shon Feder <shon@informal.systems>"]
-edition = "2018"
+edition = "2021"
 description = """
             An internal crate providing proptest generators used across our
             crates and not depending on any code internal to those crates.
@@ -16,4 +16,4 @@ time = ["chrono"]
 
 [dependencies]
 chrono = { version = "0.4", features = ["serde"], optional = true}
-proptest = "0.10.1"
+proptest = "1.0.0"

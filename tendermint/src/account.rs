@@ -18,7 +18,7 @@ use subtle_encoding::hex;
 #[cfg(feature = "secp256k1")]
 use crate::public_key::Secp256k1;
 #[cfg(feature = "secp256k1")]
-use ripemd160::Ripemd160;
+use ripemd::Ripemd160;
 use std::convert::TryFrom;
 use tendermint_proto::Protobuf;
 
