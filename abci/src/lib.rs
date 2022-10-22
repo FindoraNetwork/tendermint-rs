@@ -9,6 +9,9 @@
 //! have them interact. In practice, the client interaction will be performed
 //! by a full Tendermint node.
 //!
+#[cfg_attr(
+    all(feature = "client", feature = "kvstore-app"),
+    doc = r##"
 //! ```rust
 //! use tendermint_abci::{KeyValueStoreApp, ServerBuilder, ClientBuilder};
 //! use tendermint_proto::abci::{RequestEcho, RequestDeliverTx, RequestQuery};
@@ -52,7 +55,8 @@
 //!     .unwrap();
 //! assert_eq!(res.value, "test-value".as_bytes().to_owned());
 //! ```
-
+""##
+)]
 mod application;
 #[cfg(feature = "client")]
 mod client;

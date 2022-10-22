@@ -3,9 +3,10 @@ use gumdrop::Options;
 use serde::{Deserialize, Serialize};
 use simple_error::*;
 use std::convert::TryFrom;
+use tendermint::signature::Ed25519Signature;
 use tendermint::{
     block::{self, parts::Header as PartSetHeader},
-    signature::{self, Signature, Signer, ED25519_SIGNATURE_SIZE},
+    signature::{self, Signature, Signer},
     vote,
     vote::ValidatorIndex,
 };
@@ -131,7 +132,7 @@ impl Generator<vote::Vote> for Vote {
             validator_address: block_validator.address,
             validator_index: ValidatorIndex::try_from(validator_index as u32).unwrap(),
             signature: Signature::Ed25519(try_with!(
-                signature::Ed25519Signature::try_from(&[0_u8; ED25519_SIGNATURE_SIZE][..]),
+                signature::Ed25519Signature::try_from(&[0_u8; Ed25519Signature::BYTE_SIZE][..]),
                 "failed to construct empty ed25519 signature"
             )),
         };

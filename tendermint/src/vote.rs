@@ -16,7 +16,6 @@ use crate::{account, block, Signature, Time};
 use crate::{Error, Kind::*};
 use bytes::BufMut;
 use ed25519::Signature as ed25519Signature;
-use ed25519::SIGNATURE_LENGTH as ed25519SignatureLength;
 use serde::{Deserialize, Serialize};
 use std::convert::{TryFrom, TryInto};
 use std::fmt;
@@ -166,7 +165,9 @@ impl Default for Vote {
             timestamp: Some(Time::unix_epoch()),
             validator_address: account::Id::new([0; account::LENGTH]),
             validator_index: ValidatorIndex::try_from(0_i32).unwrap(),
-            signature: Ed25519(ed25519Signature::new([0; ed25519SignatureLength])),
+            signature: Ed25519(
+                ed25519Signature::from_bytes(&[0; ed25519Signature::BYTE_SIZE]).unwrap(),
+            ),
         }
     }
 }

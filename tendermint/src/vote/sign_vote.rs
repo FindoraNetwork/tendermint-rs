@@ -98,7 +98,7 @@ mod tests {
     use crate::block::Round;
     use crate::chain::Id as ChainId;
     use crate::hash::Algorithm;
-    use crate::signature::{Signature, ED25519_SIGNATURE_SIZE};
+    use crate::signature::Signature;
     use crate::vote::{CanonicalVote, ValidatorIndex};
     use crate::vote::{SignVoteRequest, Type};
     use crate::Hash;
@@ -427,7 +427,7 @@ mod tests {
                 )
                 .unwrap(),
             }),
-            signature: Signature::try_from(vec![1; ED25519_SIGNATURE_SIZE]).unwrap(),
+            signature: Signature::try_from(vec![1; ed25519::Signature::BYTE_SIZE]).unwrap(),
         };
         let want = SignVoteRequest {
             vote,
