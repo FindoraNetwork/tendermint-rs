@@ -9,8 +9,8 @@ use std::{
 };
 
 use chacha20poly1305::{
-    aead::{generic_array::GenericArray, AeadInPlace, NewAead},
-    ChaCha20Poly1305,
+    aead::{generic_array::GenericArray, AeadInPlace},
+    ChaCha20Poly1305, KeyInit,
 };
 use ed25519_dalek::{self as ed25519, Signer, Verifier};
 use eyre::{eyre, Result, WrapErr};

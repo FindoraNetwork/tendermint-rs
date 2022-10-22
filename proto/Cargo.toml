@@ -17,8 +17,8 @@ description = """
 all-features = true
 
 [dependencies]
-prost = "0.7"
-prost-types = "0.7"
+prost = "0.11"
+prost-types = "0.11"
 bytes = "1.0"
 anomaly = { git = "https://github.com/FindoraNetwork/anomaly.git", branch = "main" }
 thiserror = "1.0"

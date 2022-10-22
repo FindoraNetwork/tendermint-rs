@@ -51,8 +51,7 @@ impl Validator {
             Ed25519SecretKey::from_bytes(&bytes).ok(),
             "failed to construct a seed from validator identifier"
         );
-        let public = public_key::Ed25519::from(&secret);
-        Ok(private_key::Ed25519 { secret, public })
+        Ok(private_key::Ed25519::from(secret))
     }
 
     /// Get public key for this validator companion.
