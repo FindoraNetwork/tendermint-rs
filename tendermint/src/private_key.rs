@@ -25,7 +25,7 @@ impl PrivateKey {
     /// Get the public key associated with this private key
     pub fn public_key(&self) -> PublicKey {
         match self {
-            PrivateKey::Ed25519(private_key) => private_key.public.into(),
+            PrivateKey::Ed25519(private_key) => private_key.public_key().into(),
         }
     }
 
