@@ -158,7 +158,7 @@ mod sealed {
     use hyper::client::HttpConnector;
     use hyper::{header, Uri};
     use hyper_proxy::{Intercept, Proxy, ProxyConnector};
-    use hyper_rustls::HttpsConnector;
+    use hyper_rustls::{HttpsConnector, HttpsConnectorBuilder};
     use std::io::Read;
 
     /// A wrapper for a `hyper`-based client, generic over the connector type.
@@ -237,9 +237,14 @@ mod sealed {
         }
 
         pub fn new_https(uri: Uri) -> Self {
+            let connector = HttpsConnectorBuilder::new()
+                .with_native_roots()
+                .https_only()
+                .enable_http1()
+                .build();
             Self::Https(HyperClient::new(
                 uri,
-                hyper::Client::builder().build(HttpsConnector::with_native_roots()),
+                hyper::Client::builder().build(connector),
             ))
         }
 
@@ -254,8 +259,12 @@ mod sealed {
 
         pub fn new_https_proxy(uri: Uri, proxy_uri: Uri) -> Result<Self> {
             let proxy = Proxy::new(Intercept::All, proxy_uri);
-            let proxy_connector =
-                ProxyConnector::from_proxy(HttpsConnector::with_native_roots(), proxy)?;
+            let connector = HttpsConnectorBuilder::new()
+                .with_native_roots()
+                .https_only()
+                .enable_http1()
+                .build();
+            let proxy_connector = ProxyConnector::from_proxy(connector, proxy)?;
             Ok(Self::HttpsProxy(HyperClient::new(
                 uri,
                 hyper::Client::builder().build(proxy_connector),
