@@ -19,7 +19,7 @@ pub trait TrustThreshold: Copy + Clone + Debug + Serialize + DeserializeOwned {
 /// accepted going forward.
 /// The [`Default::default()`] returns true, iff at least a third of the trusted
 /// voting power signed (in other words at least one honest validator signed).
-/// Some clients might require more than +1/3 and can implement their own
+/// Some clients might require more than +1/2 and can implement their own
 /// [`TrustThreshold`] which can be passed into all relevant methods.
 #[derive(Copy, Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TrustThresholdFraction {
@@ -32,19 +32,19 @@ pub struct TrustThresholdFraction {
 }
 
 impl TrustThresholdFraction {
-    /// Constant for a trust threshold of 2/3.
+    /// Constant for a trust threshold of 1/2.
     pub const TWO_THIRDS: Self = Self {
-        numerator: 2,
-        denominator: 3,
+        numerator: 1,
+        denominator: 2,
     };
 
     /// Instantiate a TrustThresholdFraction if the given denominator and
     /// numerator are valid.
     ///
-    /// The parameters are valid iff `1/3 <= numerator/denominator <= 1`.
+    /// The parameters are valid iff `1/2 <= numerator/denominator <= 1`.
     /// In any other case we return `None`.
     pub fn new(numerator: u64, denominator: u64) -> Option<Self> {
-        if numerator <= denominator && denominator > 0 && 3 * numerator >= denominator {
+        if numerator <= denominator && denominator > 0 && 2 * numerator >= denominator {
             Some(Self {
                 numerator,
                 denominator,
@@ -63,7 +63,7 @@ impl TrustThreshold for TrustThresholdFraction {
 
 impl Default for TrustThresholdFraction {
     fn default() -> Self {
-        Self::new(1, 3)
+        Self::new(1, 2)
             .expect("initializing TrustThresholdFraction with valid fraction mustn't panic")
     }
 }
